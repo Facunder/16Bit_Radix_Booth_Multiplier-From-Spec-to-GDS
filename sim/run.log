@@ -1,0 +1,83 @@
+Command: vcs -R -full64 +v2k -fsdb +define+FSDB -sverilog -f file_list.f -l run.log \
+
+*** Using c compiler gcc instead of cc ...
+
+Warning-[DEBUG_DEP] Option will be deprecated
+  The option '-fsdb' will be deprecated in a future release.  Please use 
+  '-debug_acc+dmptf -debug_region+cell+encrypt' instead.
+
+                         Chronologic VCS (TM)
+       Version Q-2020.03-SP2_Full64 -- Mon Nov 18 20:52:22 2024
+               Copyright (c) 1991-2020 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Parsing design file '../src/Bit16Radix4BoothMultiplier.v'
+Parsing design file '../src/Radix4BoothEncoder.v'
+Parsing design file '../src/SqrtCarrySelectAdder.v'
+Parsing design file '../src/WallaceTree.v'
+Parsing design file './tb_Bit16Radix4BoothMultiplier.v'
+Parsing design file '../src/timescale.v'
+Top Level Modules:
+       Test_Bit16Radix4BoothMultiplier
+No TimeScale specified
+Starting vcs inline pass...
+
+4 modules and 0 UDP read.
+recompiling module Test_Bit16Radix4BoothMultiplier
+	However, due to incremental compilation, only 1 module needs to be compiled. 
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+ld -shared  -Bsymbolic   -o .//../simv.daidir//_cuarc0.so objs/amcQw_d.o 
+rm -f _cuarc0.so
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir \
+-Wl,-rpath=/capsule/eda/synopsys/vcs-2020.03/linux64/lib -L/capsule/eda/synopsys/vcs-2020.03/linux64/lib \
+-Wl,-rpath-link=./  /usr/lib64/libnuma.so.1     _46806_archive_1.so _prev_archive_1.so \
+_cuarc0.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o \
+rmar_llvm_0_0.o          -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile \
+-luclinative /capsule/eda/synopsys/vcs-2020.03/linux64/lib/vcs_tls.o   -Wl,-whole-archive \
+-lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /capsule/eda/synopsys/vcs-2020.03/linux64/lib/vcs_save_restore_new.o \
+/capsule/eda/synopsys/verdi-2020.03/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread \
+-ldl 
+../simv up to date
+Command: /lamport/makkapakka/linyuzheng/workspace_HDL/RTL/16Bit_Radix4_Booth_Multiplier/sim/./simv +v2k +define+FSDB -a run.log
+Chronologic VCS simulator copyright 1991-2020
+Contains Synopsys proprietary information.
+Compiler version Q-2020.03-SP2_Full64; Runtime version Q-2020.03-SP2_Full64;  Nov 18 20:52 2024
+Test Case 1: 0001(          1) * 0001(          1) = 00000001(          1)
+Test Case 2: ffff(         -1) * 0001(          1) = ffffffff(         -1)
+Test Case 3: ffff(         -1) * ffff(         -1) = 00000001(          1)
+Test Case 4: 0000(          0) * ffff(         -1) = 00000000(          0)
+Test Case 5: 1234(       4660) * fedc(       -292) = ffeb3cb0(   -1360720)
+Random Test Case           1: 3524(      13604) * 5e81(      24193) = 139dff24(  329121572)
+Random Test Case           2: d609(     -10743) * 5663(      22115) = f1d6cb7b( -237581445)
+Random Test Case           3: 7b0d(      31501) * 998d(     -26227) = cec18b29( -826176727)
+Random Test Case           4: 8465(     -31643) * 5212(      21010) = d85fa91a( -664819430)
+Random Test Case           5: e301(      -7423) * cd0d(     -13043) = 05c5540d(   96818189)
+Random Test Case           6: f176(      -3722) * cd3d(     -12995) = 02e2071e(   48367390)
+Random Test Case           7: 57ed(      22509) * f78c(      -2164) = fd18c09c(  -48709476)
+Random Test Case           8: e9f9(      -5639) * 24c6(       9414) = fcd5fa96(  -53085546)
+Random Test Case           9: 84c5(     -31547) * d2aa(     -11606) = 15d2c4d2(  366134482)
+Random Test Case          10: f7e5(      -2075) * 7277(      29303) = fc603573(  -60803725)
+Random Test Case          11: d612(     -10734) * db8f(      -9329) = 05f7fa0e(  100137486)
+Random Test Case          12: 69f2(      27122) * 96ce(     -26930) = d4770cbc( -730395460)
+Random Test Case          13: 7ae8(      31464) * 4ec5(      20165) = 25d14488(  634471560)
+Random Test Case          14: 495c(      18780) * 28bd(      10429) = 0bac88ec(  195856620)
+Random Test Case          15: 582d(      22573) * 2665(       9829) = 0d3977c1(  221870017)
+Random Test Case          16: 6263(      25187) * 870a(     -30966) = d1830cde( -779940642)
+Random Test Case          17: 2280(       8832) * 2120(       8480) = 0476d000(   74895360)
+Random Test Case          18: 45aa(      17834) * cc9d(     -13155) = f2043142( -234606270)
+Random Test Case          19: 3e96(      16022) * b813(     -18413) = ee6a7522( -295013086)
+Random Test Case          20: 380d(      14349) * d653(     -10669) = f6e00a37( -153089481)
+Boundary Test Case 1: 7fff(      32767) * 8000(     -32768) = c0008000(-1073709056)
+Boundary Test Case 2: 8000(     -32768) * 8000(     -32768) = c0000000(-1073741824)
+$finish called from file "./tb_Bit16Radix4BoothMultiplier.v", line 66.
+$finish at simulation time                  280
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 280
+CPU Time:      0.440 seconds;       Data structure size:   0.0Mb
+Mon Nov 18 20:52:26 2024
+CPU time: .792 seconds to compile + .662 seconds to elab + .761 seconds to link + .524 seconds in simulation
