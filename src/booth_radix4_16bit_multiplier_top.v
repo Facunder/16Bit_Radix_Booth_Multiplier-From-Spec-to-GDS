@@ -1,23 +1,24 @@
-module booth_radi4_16bit_multiplier_top(
+module booth_radix4_16bit_multiplier_top(
     input clk,
     input rst_n,
     input [15:0] a,
     input [15:0] b,
-    output reg [31:0] product
+    output [31:0] product
 );
 
+wire [16:0] extend_B;
 wire [16:0] partial_sum [7:0]; 
-
-wire opt_bit_S, opt_bit_E;
+wire [7:0] opt_bit_S, opt_bit_E;
 wire [19:0] extend_pp_0, extend_pp_7;
 wire [20:0] extend_pp_1, extend_pp_2, extend_pp_3, extend_pp_4, extend_pp_5, extend_pp_6;
 
 /********** Stage1: Booth Encode and Symbol bit extension optimization method **********/
+assign extend_B = {b, 1'b0};
 generate 
         genvar i;
         for (i = 0; i < 8; i = i + 1) begin : Booth_Encoders
             radix4_booth_encoder #(.WIDTH(16)) booth_encoder (
-                .A(A),
+                .A(a),
                 .partial_B(extend_B[2 * i + 2 : 2 * i]),
                 .P_reg(partial_sum[i]),
                 .S(opt_bit_S[i]),
@@ -75,8 +76,8 @@ wallace_tree_compressor wallace_tree_compressor_inst(
     .pp6(extend_pp_6_reg),
     .pp7(extend_pp_7_reg),
     .rest_S(rest_opt_bit_S_reg),
-    .final_part_0(),
-    .final_part_1()
+    .final_part_0(compressed_final_part_0),
+    .final_part_1(compressed_final_part_1)
 );
 
 // Pipeline: Stage2 -> Stage3
@@ -93,11 +94,13 @@ end
 
 /********** Stage3: Final Addition **********/
 wire [31:0] compressed_final_parts_sum;
-sqrt_carry_select_adder #(.WIDTH(16))sqrt_carry_select_adder_inst(
-    .A(compressed_final_part_0_reg),
-    .B(compressed_final_part_1_reg),
-    .C_in(1'b0),
-    .S(compressed_final_parts_sum)
+wire abort_cout;
+sqrt_carry_select_adder #(.WIDTH(32))sqrt_carry_select_adder_inst(
+    .a(compressed_final_part_0_reg),
+    .b(compressed_final_part_1_reg),
+    .cin(1'b0),
+    .sum(compressed_final_parts_sum),
+    .cout(abort_cout)
 );
 
 assign product = compressed_final_parts_sum;

@@ -53,7 +53,7 @@ assign rearranged_pp3 = {pp4[20:19], pp3};
 assign rearranged_pp4 = pp4[18:0];
 assign rearranged_pp5 = pp5[14:0];
 assign rearranged_pp6 = pp6[10:0];
-assign rearranged_pp7 = pp6[7:0];
+assign rearranged_pp7 = pp7[7:0];
 assign rearranged_pp8 = rest_S;
 
 // level 1 
@@ -92,8 +92,8 @@ assign l2_rearranged_pp7 = {l1_ha_Cout[5:0], l1_ha_S[0], rearranged_pp7[1:0]};
 wire l2_ha_S, l2_ha_Cout;
 wire [7:0] l2_fa_S, l2_fa_Cout;
 half_adder l2_ha_0(
-    .A(l2_rearranged_pp7[0]),
-    .B(l2_rearranged_pp6[0]),
+    .A(l2_rearranged_pp6[2]),
+    .B(l2_rearranged_pp7[0]),
     .S(l2_ha_S),
     .Cout(l2_ha_Cout)
 );
@@ -116,7 +116,7 @@ endgenerate
 // raw: 7 -> 6
 wire [14:0] l3_rearranged_pp5;
 wire [11:0] l3_rearranged_pp6;
-assign l3_rearranged_pp5 = {rearranged_pp5[14:12], l2_fa_S[7:0], rearranged_pp5[4:0]};
+assign l3_rearranged_pp5 = {rearranged_pp5[14:13], l2_fa_S[7:0], rearranged_pp5[4:0]};
 assign l3_rearranged_pp6 = {l2_fa_Cout[7:0], l2_ha_Cout, l2_ha_S, l2_rearranged_pp6[1:0]};
 
 wire [1:0] l3_ha_S, l3_ha_Cout;
@@ -187,7 +187,7 @@ endgenerate
 wire [22:0] l5_rearranged_pp3;
 wire [19:0] l5_rearranged_pp4;
 assign l5_rearranged_pp3 = {rearranged_pp3[22:21], l4_ha_S[1], l4_fa_S[14:0], rearranged_pp3[4:0]};
-assign l5_reaaranged_pp4 = {l4_ha_Cout[1], l4_fa_Cout[14:0], l4_ha_Cout[0], l4_ha_S[0], l4_rearranged_pp4[1:0]};
+assign l5_rearranged_pp4 = {l4_ha_Cout[1], l4_fa_Cout[14:0], l4_ha_Cout[0], l4_ha_S[0], l4_rearranged_pp4[1:0]};
 
 wire [1:0] l5_ha_S, l5_ha_Cout;
 wire [18:0] l5_fa_S, l5_fa_Cout;
@@ -251,7 +251,7 @@ generate
     end
 endgenerate
 
-// level 6
+// level 7
 // full_adder * 27 & half_adder * 2 
 // raw: 3 -> 2
 wire [30:0] l7_rearranged_pp1;

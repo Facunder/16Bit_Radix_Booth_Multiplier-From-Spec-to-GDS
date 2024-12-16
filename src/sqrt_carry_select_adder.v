@@ -1,5 +1,5 @@
 // sqrt carry select adder data width flexible
-module sqrt_carry_select_adder #(parameter WIDTH = 16) (
+module sqrt_carry_select_adder #(parameter WIDTH = 32) (
     input [WIDTH-1:0] a,
     input [WIDTH-1:0] b,
     input cin,
